@@ -5,7 +5,7 @@ const logo = new URL('../assets/open-wc-logo.svg', import.meta.url).href;
 class FunFlags extends LitElement {
   static properties = {
     header: { type: String },
-  }
+  };
 
   static styles = css`
     :host {
@@ -29,15 +29,6 @@ class FunFlags extends LitElement {
     .logo {
       margin-top: 36px;
       animation: app-logo-spin infinite 20s linear;
-    }
-
-    @keyframes app-logo-spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
     }
 
     .app-footer {
@@ -71,16 +62,6 @@ class FunFlags extends LitElement {
           Code examples
         </a>
       </main>
-
-      <p class="app-footer">
-        🚽 Made with love by
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/open-wc"
-          >open-wc</a
-        >.
-      </p>
     `;
   }
 }
