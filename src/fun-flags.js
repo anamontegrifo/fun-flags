@@ -1,10 +1,12 @@
 import { LitElement, html, css } from 'lit';
-
-const logo = new URL('../assets/open-wc-logo.svg', import.meta.url).href;
+import './data/GetData.js';
+import './components/MainHeader.js';
 
 class FunFlags extends LitElement {
   static properties = {
-    header: { type: String },
+    countries: { type: Array },
+    filteredCountries: { type: Array },
+    inputValue: { type: String },
   };
 
   static styles = css`
@@ -26,11 +28,6 @@ class FunFlags extends LitElement {
       flex-grow: 1;
     }
 
-    .logo {
-      margin-top: 36px;
-      animation: app-logo-spin infinite 20s linear;
-    }
-
     .app-footer {
       font-size: calc(12px + 0.5vmin);
       align-items: center;
@@ -43,15 +40,23 @@ class FunFlags extends LitElement {
 
   constructor() {
     super();
-    this.header = 'My app';
+    this.countries = [];
+    this.filteredCountries = [];
+    this.inputValue = '';
+    this.addEventListener('ApiData', e => {
+      this.dataFormat(e.detail.data);
+    });
   }
 
   render() {
     return html`
+      <get-data url="https://restcountries.com/v3.1/all"></get-data>
+      <main-header
+        logoURL="https://www.pngall.com/wp-content/uploads/2017/03/Rainbow-Flag.png"
+        logoAlt="Rainbow flag"
+        headline="Fun with flags"
+      ></main-header>
       <main>
-        <div class="logo"><img alt="open-wc logo" src=${logo} /></div>
-        <h1>${this.header}</h1>
-
         <p>Edit <code>src/FunFlags.js</code> and save to reload.</p>
         <a
           class="app-link"
